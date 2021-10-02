@@ -7,8 +7,8 @@ spec:
     serviceAccountName: argo-events-sa
   dependencies:
   - name: payload
-    eventSourceName: webhook
-    eventName: devops-toolkit
+    eventSourceName: github
+    eventName: example
   triggers:
   - template:
       name: payload

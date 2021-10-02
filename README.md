@@ -2,6 +2,8 @@
 
 ### Funcionamiento
 
+git push -> [ Repo de Aplicación] -> Gitlab webhook -> Argo Events (EventSource) -> Argo Events (Sensors)
+
 **Event Source - Servicio que recibe eventos**
 Se crea lo que se llama un event source(eventsource) que basicamente es un servicio que expone un puerto que atiende un evento que puede ser un POST http con Curl o un evento generado desde gitlab o github. Este eventsource por defecto no hace nada, solo recibe el mensaje y devuelve success si lo recibio bien.
 Aca estan todos los clientes que pueden enviarles eventos.
@@ -22,7 +24,7 @@ kubectl apply -n argo-events -f https://raw.githubusercontent.com/argoproj/argo-
 kubectl apply -n argo-events -f https://raw.githubusercontent.com/argoproj/argo-events/stable/examples/eventbus/native.yaml
 ```
 
-### Ejercicio
+### Ejercicio sencillo para realizar troubleshooting
 
 ```
 # Creamos el servicio que escucha el evento
@@ -45,5 +47,13 @@ kubectl logs --selector app=payload
 **NOTA: No funciona la instalacion con HELM 3(por ahora)**
 
 ### Ejercicio con Webhook de Github
+**NOTA IMPORTANTE** El webhook se hace sobre la aplicacion que queremos construir, NO SOBRE LOS MANIFIESTOS
+
 Creamos un webhook para el proyecto argo-events
 https://github.com/roldyxoriginal/argo-events/settings/hooks/
+seleccionamos que sea JSON
+
+
+# Url adicionales
+https://github.com/vfarcic/argo-combined-demo
+https://github.com/vfarcic/argo-combined-app
