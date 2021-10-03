@@ -19,9 +19,7 @@ Se utiliza para disparar una accion, la misma se encuentra diseñada dentre de u
 ### Instalacion 
 
 ```
-kubectl create namespace argo-events
-kubectl apply -n argo-events -f https://raw.githubusercontent.com/argoproj/argo-events/stable/manifests/namespace-install.yaml
-kubectl apply -n argo-events -f https://raw.githubusercontent.com/argoproj/argo-events/stable/examples/eventbus/native.yaml
+kubectl apply -k install
 ```
 
 ### Ejercicio sencillo para realizar troubleshooting

@@ -2,9 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Sensor
 metadata:
   name: webhook
+  namespace: argo-events
 spec:
   template:
     serviceAccountName: argo-events-sa
+    container:
+      env:
+        - name: DEBUB_LOG
+          value: "true"
   dependencies:
   - name: payload
     eventSourceName: github
