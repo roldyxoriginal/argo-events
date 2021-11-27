@@ -22,35 +22,8 @@ Se utiliza para disparar una accion, la misma se encuentra diseñada dentre de u
 kubectl apply -k install
 ```
 
-### Ejercicio sencillo para realizar troubleshooting
-
-```
-# Creamos el servicio que escucha el evento
-kubectl apply -f event-source.yaml
-
-# Forwardeamos el puerto localmente, caso contrario tendriamos que crear un ingress
-kubectl port-forward webhook-eventsource-6cqzz-67cb8fcf48-x57jg 12000:12000 &
-
-# Creamos el sensor que dispara el trigger
-kubectl apply -f sensor.yaml
-
-# Enviamos el siguiente evento a Argo Events 
-curl -X POST -H "Content-Type: application/json" -d '{"message":"Roldyx crack!!"}' http://localhost:12000/devops-toolkit
-
-# Finalmente podemos ver los logs
-kubectl logs --selector app=payload
-
-```
 
 **NOTA: No funciona la instalacion con HELM 3(por ahora)**
-
-### Ejercicio con Webhook de Github
-**NOTA IMPORTANTE** El webhook se hace sobre la aplicacion que queremos construir, NO SOBRE LOS MANIFIESTOS
-
-Creamos un webhook para el proyecto argo-events
-https://github.com/roldyxoriginal/argo-events/settings/hooks/
-seleccionamos que sea JSON
-
 
 # Url adicionales
 https://github.com/vfarcic/argo-combined-demo
