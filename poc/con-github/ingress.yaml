@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: webhook
-  namespace: argo-events
 spec:
   rules:
   - host: webhook.roldyx.duckdns.org
